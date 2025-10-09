@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bun</title>
+    <link rel="stylesheet" href="globals.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Partículas de fondo -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Logo principal -->
+        <div class="logo-container">
+            <div class="logo-wrapper">
+                <img src="bun-logo.svg" alt="Bun Logo" class="bun-logo">
+                <div class="glow-effect"></div>
+            </div>
+        </div>
+
+        <!-- Texto principal -->
+        <div class="welcome-text">
+            <h1 class="title">
+                <span class="letter">W</span>
+                <span class="letter">e</span>
+                <span class="letter">l</span>
+                <span class="letter">c</span>
+                <span class="letter">o</span>
+                <span class="letter">m</span>
+                <span class="letter">e</span>
+                <span class="space"> </span>
+                <span class="letter">t</span>
+                <span class="letter">o</span>
+                <span class="space"> </span>
+                <span class="letter highlight">B</span>
+                <span class="letter highlight">u</span>
+                <span class="letter highlight">n</span>
+            </h1>
+            <p class="subtitle">The fast JavaScript runtime</p>
+        </div>
+
+        <!-- Monito interactivo -->
+        <div class="bunny-container">
+            <div class="bunny">
+                <div class="bunny-body">
+                    <div class="bunny-ears">
+                        <div class="ear left-ear"></div>
+                        <div class="ear right-ear"></div>
+                    </div>
+                    <div class="bunny-face">
+                        <div class="eyes">
+                            <div class="eye left-eye">
+                                <div class="pupil"></div>
+                            </div>
+                            <div class="eye right-eye">
+                                <div class="pupil"></div>
+                            </div>
+                        </div>
+                        <div class="nose"></div>
+                        <div class="mouth"></div>
+                    </div>
+                </div>
+                <div class="bunny-shadow"></div>
+            </div>
+        </div>
+
+        <!-- Botones interactivos -->
+        <div class="buttons">
+            <button class="btn primary-btn" onclick="showMessage('¡Hola! Soy Bun, el runtime más rápido 🚀')">
+                <span>¡Hola Bun!</span>
+                <div class="btn-glow"></div>
+            </button>
+            <button class="btn secondary-btn" onclick="showMessage('¡Vamos a programar algo increíble! 💻')">
+                <span>Empezar</span>
+                <div class="btn-glow"></div>
+            </button>
+        </div>
+
+        <!-- Mensaje dinámico -->
+        <div class="message-container" id="messageContainer">
+            <div class="message" id="message"></div>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar mensajes
+        function showMessage(text) {
+            const messageEl = document.getElementById('message');
+            const containerEl = document.getElementById('messageContainer');
+
+            messageEl.textContent = text;
+            containerEl.classList.add('show');
+
+            setTimeout(() => {
+                containerEl.classList.remove('show');
+            }, 3000);
+        }
+
+        // Seguimiento del cursor con los ojos del monito
+        document.addEventListener('mousemove', (e) => {
+            const eyes = document.querySelectorAll('.eye');
+
+            eyes.forEach(eye => {
+                const rect = eye.getBoundingClientRect();
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+
+                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+                const distance = Math.min(8, Math.sqrt(Math.pow(e.clientX - eyeCenterX, 2) + Math.pow(e.clientY - eyeCenterY, 2)) / 20);
+
+                const pupil = eye.querySelector('.pupil');
+                pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+            });
+        });
+
+        // Animación de entrada
+        document.addEventListener('DOMContentLoaded', () => {
+            const letters = document.querySelectorAll('.letter');
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.classList.add('animate');
+                }, index * 100);
+            });
+
+            // Animación del logo
+            setTimeout(() => {
+                document.querySelector('.logo-wrapper').classList.add('animate');
+            }, 1000);
+        });
+
+        // Efecto de hover en botones
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.classList.add('hover');
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.classList.remove('hover');
+            });
+        });
+    </script>
+</body>
+</html>
