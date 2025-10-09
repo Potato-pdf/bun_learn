@@ -1,28 +1,27 @@
 
-import { serve } from "bun";
+import { serve, file } from "bun";
 
 const server = serve({
     port: 3000,
-    async fetch(request) {
+    async fetch(request: { url: string | URL; }) {
         const url = new URL(request.url);
 
         // Servir archivos estáticos
         if (url.pathname === "/" || url.pathname === "/index.html") {
-            const html = await Bun.file("index.html").text();
+            const html = await file("index.html").text();
             return new Response(html, {
                 headers: { "Content-Type": "text/html" },
             });
         }
-
-        if (url.pathname === "/globals.css") {
-            const css = await Bun.file("globals.css").text();
+                if (url.pathname === "/globals.css") {
+            const css = await file("globals.css").text();
             return new Response(css, {
                 headers: { "Content-Type": "text/css" },
             });
         }
 
         if (url.pathname === "/bun-logo.svg") {
-            const svg = await Bun.file("Bun Logo.svg").text();
+            const svg = await file("bun-logo.svg").text();
             return new Response(svg, {
                 headers: { "Content-Type": "image/svg+xml" },
             });
@@ -32,4 +31,4 @@ const server = serve({
     },
 });
 
-console.log(`🚀 Server running at http://localhost:${server.port}`);
+console.log(`Server running at http://localhost:${server.port}`);
