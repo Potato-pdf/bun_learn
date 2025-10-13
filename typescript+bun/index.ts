@@ -1,16 +1,23 @@
 type HeroID= `${string}-${string}-${string}-${string}-${string}`;
-
-type Persona = {
-    readonly id ?: HeroID
-    name : string
+type DualTupe = HeroID | string;
+type RequiredPerson = {
+    name : string,
     age : number
+};
+type OptionaPersona = {
+    readonly id ?: HeroID
     phoneNumber ?: number
 };
-function createPerson( name:string, age:number) : Persona{
+type Persona = RequiredPerson & OptionaPersona;
+
+function createPerson( name:string, age:number, phoneNumber ?: number) : Persona{
     return {id : crypto.randomUUID(),
         name, 
-        age}
+        age,
+        phoneNumber
+    }
 }
 
 const person = createPerson("cesar", 23)
 console.log(person);
+
