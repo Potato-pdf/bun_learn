@@ -1,6 +1,9 @@
-# Nestjs specific
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
 /dist
-/node_modules
 /build
 /tmp
 
