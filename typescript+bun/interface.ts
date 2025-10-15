@@ -8,6 +8,10 @@ interface persona {
     saludar: (name: string) => void
 }
 
+interface empleado extends persona{
+    puesto: string
+}
+
 function crearPersona(
     name: string,
     age: number,
@@ -21,7 +25,27 @@ function crearPersona(
         saludar: (name: string) => { console.log(`hola ${name}`) }
     }
 }
-
 const Persona = crearPersona ("cesar", 20, true);
+
+function crearEmpleado(
+    name: string,
+    age: number,
+    isactive: boolean,
+    puesto: string
+): empleado {
+    return {
+        id: crypto.randomUUID(),
+        name,
+        age,
+        isactive,
+        saludar: (name: string) => { console.log(`hola ${name}`) },
+        puesto
+    }
+}
+
+const Empleado = crearEmpleado("Ana", 30, true, "Desarrollador");
+Empleado.saludar(Empleado.name);
+console.log(Empleado);
+
 Persona.saludar(Persona.name);
 console.log(Persona)
