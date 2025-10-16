@@ -16,6 +16,10 @@ interface BYA extends empleado{
 type Empresa = Confies | BYA
 
 function trabajar(empresa: Empresa){
-    console.log(empresa.sueldo)
-    
+    if ("pagar" in empresa){
+    console.log(empresa.pagar())}
+    else{
+        console.log(empresa.programar())
+    }
+
 }
