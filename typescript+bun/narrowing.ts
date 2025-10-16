@@ -1,0 +1,1 @@
+import empleado from interface
