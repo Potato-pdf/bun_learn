@@ -21,5 +21,6 @@ function trabajar(empresa: Empresa){
     else{
         console.log(empresa.programar())
     }
+    
 
 }
