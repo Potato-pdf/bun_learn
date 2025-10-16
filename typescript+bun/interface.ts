@@ -8,7 +8,7 @@ interface persona {
     saludar: (name: string) => void
 }
 
-interface empleado extends persona{
+export interface empleado extends persona{
     puesto: string
 }
 
