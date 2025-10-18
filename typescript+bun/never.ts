@@ -8,4 +8,4 @@ function representacionNever(x : string|number){
     else{
         x
     }
-}
+}   
