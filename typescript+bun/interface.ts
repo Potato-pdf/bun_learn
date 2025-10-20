@@ -1,4 +1,4 @@
-type id = `${string}-${string}-${string}-${string}-${string}`;
+export type id = `${string}-${string}-${string}-${string}-${string}`;
 
 interface persona {
     id?: id
