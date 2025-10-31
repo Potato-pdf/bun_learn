@@ -1,30 +1,23 @@
-const port = 373242;
-
+import { serve } from "bun";
+import { user_routes } from "./src/route/user.route";
+import { conect_db } from "./src/db/mongo.conection";
+import { URL } from "whatwg-url";
+const puerto = 2550
+  
+await conect_db();
 Bun.serve({
-  port,
+  port: puerto,
   fetch(req) {
-    if (req.method === 'OPTIONS') {
-      return new Response(null, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type',
-        },
-      });
+    const url = new URL(req.url);
+
+    const routes = [user_routes];
+
+    for (const route of routes) {
+      const res = route(url, req);
+      if (res) return res;
     }
 
-    if (req.headers.get('content-type')?.includes('application/json')) {
-    }
-
-    return new Response('Hello via Bun!', {
-      headers: {
-        'Content-Type': 'text/plain',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+    return new Response("404 Not Found", { status: 404 });
   },
 });
-
-console.log(`Server running on port ${port}`);
-
-      
+console.log(`server running at ${puerto}`);
