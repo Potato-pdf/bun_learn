@@ -1,6 +1,6 @@
 import { glob } from "glob";
 import { Hono } from "hono";
-import { H } from "hono/types";
+
 import path from "path";
 
 export function register_routes (app:Hono){
