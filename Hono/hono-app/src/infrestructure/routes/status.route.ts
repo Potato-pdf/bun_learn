@@ -8,3 +8,4 @@ export const register = (app:Hono): void => {
 
     app.get("/health", (c) => health_check_controller.run(c))
 }
+    
