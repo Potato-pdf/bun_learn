@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
-    const url = "mongodb://localhost:27017"
+
+const url = "mongodb://localhost:27017"
 
 export async function connection_db (){
     try {
