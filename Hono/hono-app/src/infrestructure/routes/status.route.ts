@@ -6,5 +6,5 @@ import { TYPES } from "../config/dependency-injection/types.inversufy";
 export const register = (app:Hono): void => {
     const health_check_controller = container.get<health_check_controller>(TYPES.health_check_controller)
 
-    app.get("/healt", (c) => health_check_controller.run(c))
+    app.get("/health", (c) => health_check_controller.run(c))
 }
