@@ -10,3 +10,6 @@ container.bind<health_check_controller>(TYPES.health_check_controller).to(health
 //Application
 
 //Domain
+
+
+export default container
