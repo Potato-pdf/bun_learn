@@ -6,7 +6,9 @@
   "dependencies": {
     "glob": "^11.0.3",
     "hono": "^4.10.4",
-    "http-status": "^2.1.0"
+    "http-status": "^2.1.0",
+    "inversify": "^7.10.4",
+    "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
     "@types/bun": "latest"
